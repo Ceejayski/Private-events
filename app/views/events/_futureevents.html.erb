@@ -1,0 +1,11 @@
+<%@events.@upcoming.each do |event|%>
+  <% link_to  event_path(event) do %>
+    <h4><%= event.title.capitalize %></h4>
+    <p>Creator: <%= event.creator.name %></p>
+    <p><%= event.description %></p>
+    <p>Event Date: <%= event.date %></p>
+    <%= user_attending?(event_id).each do |button|%>
+      <% button %>
+    <% end %>
+  <% end %>
+<% end %>

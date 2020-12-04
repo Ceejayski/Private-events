@@ -1,0 +1,14 @@
+<h4><%= @event.title.capitalize %></h4>
+<p>Creator : <%= @event.creator.name %></p>
+<div>
+  <p><%= @event.description %></p>
+</div>
+<div>
+  <p>Event Date: <%= @event.date %></p>
+</div>
+<p><%= @event.attendees.count %></p>
+<% @event.attendees.each do |attendee| %>
+  <ul>
+    <li><%= attendee.name %></li>
+  </ul>
+<% end %>

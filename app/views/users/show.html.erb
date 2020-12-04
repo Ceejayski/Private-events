@@ -1,2 +1,13 @@
 <h1>Show page</h1>
-<%= @user.name %>
+<h1>Events history</h1>
+<h4>Events you created: <%= events_created.count %></h4>
+<%= events_created.order('created_at DESC').each do |event| %>
+  <%= link_to event_path(event) do %>
+    <div>
+      <p>Event Title: <%= event.title %></p>
+    </div>
+    <div>
+      <p>Event Date: <%= event.date %></p>
+    </div>
+  <% end %>
+<% end %>  
