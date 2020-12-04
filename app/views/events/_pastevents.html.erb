@@ -1,4 +1,4 @@
-<% @events.@past.each do |event| %>
+<% @event.each do |event| %>
   <%= link_to event_path(event) do %>
     <h4><%= event.title.capitalize %></h4>
     <p>Creator : <%= event.creator.name %></p>

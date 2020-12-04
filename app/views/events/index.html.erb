@@ -1,5 +1,4 @@
-<!--<h1>Upcoming events: <%#= pluralize(@upcoming_events.count, 'Event') %></h1>-->
-<h1>Upcoming events</h1>
+<h1>Upcoming events: <%= pluralize(@event.count, 'Event') %></h1>
 <div>
   <% render 'futureevents' %>
 </div>
@@ -8,7 +7,7 @@
 </div>
 
 
-<h1>Past events: <%= pluralize(@past_events.count, 'Event')%></h1>
+<h1>Past events: <%= pluralize(@event.count, 'Event')%></h1>
 <div>
   <% render 'pastevents'%>
 </div>

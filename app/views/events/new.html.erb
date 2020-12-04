@@ -1,15 +1,15 @@
-<%= form_with(model: @user, local: true) do |form| %>
-  <% if @user.errors.any? %>
+<%= form_with(model: @event, local: true) do |form| %>
+  <% if @event.errors.any? %>
      <div id="error_explanation">
-       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+       <h2><%= pluralize(@event.errors.count, "error") %> prohibited this user from being saved:</h2>
  
        <ul>
-         <% @user.errors.full_messages.each do |message| %>
+         <% @event.errors.full_messages.each do |message| %>
            <li><%= message %></li>
          <% end %>
        </ul>
      </div>
-   <% end %>
+  <% end %>
 
   <div class="field">
       <%= form.label :description %><br/>
@@ -18,7 +18,7 @@
 
   <div class="field">
       <%= form.label :date %><br/>
-      <%= form.date :date %>
+      <%= form.date_field :date %>
   </div>
 
   <div class="actions">

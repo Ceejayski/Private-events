@@ -4,7 +4,7 @@
 <%= events_created.order('created_at DESC').each do |event| %>
   <%= link_to event_path(event) do %>
     <div>
-      <p>Event Title: <%= event.title %></p>
+      <p>Event Description: <%= event.description %></p>
     </div>
     <div>
       <p>Event Date: <%= event.date %></p>
