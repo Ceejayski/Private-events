@@ -1,11 +1,13 @@
 class EventsController < ApplicationController
   include EventsHelper
-  # @event = Event.new
+  @event = Event.new
   before_action :authorization
   helper_method :events_user_attending, :test
 
   def index
     @event = Event.all
+    @past_events = Event.past.paginate(page: params[:page], per_page: 2).order(created_at: :desc)
+    @upcoming_events = Event.upcoming.paginate(page: params[:page], per_page: 2).order(created_at: :desc)
   end
 
 
