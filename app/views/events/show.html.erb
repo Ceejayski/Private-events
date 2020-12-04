@@ -9,6 +9,7 @@
 <p><%= @event.attendees.count %></p>
 <% @event.attendees.each do |attendee| %>
   <ul>
+    <h5>attendees</h5>
     <li><%= attendee.name %></li>
   </ul>
 <% end %>

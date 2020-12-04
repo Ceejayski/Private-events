@@ -1,7 +1,7 @@
 <h1>Show page</h1>
 <h1>Events history</h1>
 <h4>Events you created: <%= events_created.count %></h4>
-<%= events_created.order('created_at DESC').each do |event| %>
+<% events_created.order('created_at DESC').each do |event| %>
   <%= link_to event_path(event) do %>
     <div>
       <p>Event Description: <%= event.description %></p>
@@ -10,4 +10,20 @@
       <p>Event Date: <%= event.date %></p>
     </div>
   <% end %>
-<% end %>  
+<% end %>
+<p>Upcoming Events: <%= @user.attended_events.where('date>?', Time.now).count %></p>
+<% @user.attended_events.where('date>?', Time.now).each do |attended| %>
+  <ul>
+    <h5>attended</h5>
+    <li><%= attended.name %></li>
+  </ul>
+<% end %>
+
+
+<p>Past Events: <%= @user.attended_events.where('date<?', Time.now).count %></p>
+<% @user.attended_events.where('date<?', Time.now).each do |attended| %>
+  <ul>
+    <h5>attended</h5>
+    <li><%= attended.name %></li>
+  </ul>
+<% end %>
