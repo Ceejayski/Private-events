@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
   resources :events, only: %i[new index show create]
   resources :users, only: %i[new create show]
   resources :attendances, only: %i[create destroy]
