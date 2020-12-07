@@ -11,19 +11,25 @@
     </div>
   <% end %>
 <% end %>
-<p>Upcoming Events: <%= @user.attended_events.where('date>?', Time.now).count %></p>
-<% @user.attended_events.where('date>?', Time.now).each do |attended| %>
-  <ul>
-    <h5>attended</h5>
-    <li><%= attended.name %></li>
-  </ul>
-<% end %>
+<h4>upcoming Events:<%= events_attendance.where('date>?', Time.now).count %></h4>
+<%= events_attendance.where('date>?', Time.now).count %>
+  <% events_attendance.where('date>?', Time.now).each do |event| %>
+    <%= link_to event_path(event) do %>
+      <p>Event Description:- <%= event.description %></p>
+      <p>Event Date:- <%= event.date %></p>
+      <% user_attending?(event.id).each do |button| %>
+        <%= button %>
+      <% end %>
+    <% end %>
+  <% end %>
+  
+
+<h4>Previously attended events:<%= events_attendance.where('date<?', Time.now).count %></h4>
+
+  <% events_attendance.where('date<?', Time.now).each do |event| %>
+    <%= link_to event_path(event) %>
+      <p>Event Description:- <%= event.description %></p>
+      <p>Event Date:- <%= event.date %></p>
+  <% end %>  
 
 
-<p>Past Events: <%= @user.attended_events.where('date<?', Time.now).count %></p>
-<% @user.attended_events.where('date<?', Time.now).each do |attended| %>
-  <ul>
-    <h5>attended</h5>
-    <li><%= attended.name %></li>
-  </ul>
-<% end %>
