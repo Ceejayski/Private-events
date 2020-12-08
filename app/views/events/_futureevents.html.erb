@@ -1,12 +1,16 @@
-<div align="center">
+<div class="d-flex justify-content-center">
   <% @upcoming_events.each do |event| %>
-    <%= link_to  event_path(event) do %>
-      <p>Creator: <%= event.creator.name %></p>
-      <p><%= event.description %></p>
-      <p>Event Date: <%= event.date %></p>
-      <%# @user_attending?(event.id).each do |button|%>
-        <%#= button %>
-      <%# end %>
-    <% end %>
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title"><%= event.description %></h5>
+          <p class="card-text">Creator: <%= event.creator.name %></p>
+            <div>
+              <p class="font-1em">Event Date: <%= event.date %></p>
+            </div>
+            <div>
+              <%= link_to 'View', event_path(event), class: "btn btn-primary"%>
+            </div>
+        </div>
+      </div>
   <% end %>
 </div>
