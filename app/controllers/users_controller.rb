@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   include UsersHelper
-  before_action :authorization, except: [:create, :new]
+  before_action :authorization, except: %i[create new]
 
   def index
     @user = User.all
@@ -16,7 +16,6 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       flash[:success] = 'user was successfully created'
       redirect_to user_path(@user)
-      # redirect_to login_path
     else
       render 'new'
     end
@@ -24,7 +23,5 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
-    # @user = current_user.find(params[:id])
   end
-
 end

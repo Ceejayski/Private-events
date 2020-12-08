@@ -6,7 +6,7 @@ A project completed as part of [The Odin Ruby on Rails Learning Track](https://w
 
 ### Functionality
 
-As far as this is a training app with focus on ActiveRecord's associations, User authentication and authorization are extremely barebone with no validations or real security of access: no need for a password, anyone is able to sign in/sign up through a basic hand-rolled authentication by their name. After the registration/login they're able to create events, invite other users as well as to enroll for events organized by others. Always because it's an exercise, users can create and enroll for the events with the past dates to practice rails' scopes. In a similar vein, just strictly necessary RESTful actions were implemented in the controllers: for example, you can't edit/delete users/events. Nevertheless, the styling was not requested, we built a minimalistic design using `b` gem, a CSS framework based on Flexbox.
+As far as this is a training app with focus on ActiveRecord's associations, User authentication and authorization are extremely barebone with no validations or real security of access: no need for a password, anyone is able to sign in/sign up through a basic hand-rolled authentication by their name. After the registration/login they're able to create events, invite other users as well as to enroll for events organized by others. Always because it's an exercise, users can create and enroll for the events with the past dates to practice rails' scopes. In a similar vein, just strictly necessary RESTful actions were implemented in the controllers: for example, you can't edit/delete users/events. Nevertheless, the styling was not requested, we built a minimalistic design using `bootstrap` gem, a CSS framework based on Flexbox.
 
 ## Built With
 
@@ -21,12 +21,8 @@ As far as this is a training app with focus on ActiveRecord's associations, User
 
 ### Screenshots
 
-For those who are not patient, here are a couple of screenshots of what it looks like
-
 <p float = 'left'>
-    <img src="img/private_events.png" alt="Private events home page" width="390" height="200">
-    <img src="img/private_events2.png" alt="Private events event card" width="180" height="200">
-    <img src="img/private_events3.png" alt="Private events guest list" width="230" height="200">
+    <img src="img/private_events.png" alt="Private events home page">
 </p>
 
 ### Getting started
@@ -34,7 +30,7 @@ For those who are not patient, here are a couple of screenshots of what it looks
 To get started with the app, make sure you have Rails and Git installed on your machine  
 Clone the repo to your local machine: 
 ```ruby
-$ git clone https://github.com/Pandenok/private-events.git
+$ git clone https://github.com/Ceejayski/Private-events.git
 ```
 Then, install the needed gems:
 ```ruby
