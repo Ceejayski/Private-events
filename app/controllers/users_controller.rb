@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   include UsersHelper
-  before_action :authorization, except: [:show]
+  before_action :authorization, except: [:create, :new]
 
   def index
     @user = User.all

@@ -14,7 +14,9 @@ class ApplicationController < ActionController::Base
     end
   
     def authorization
-      redirect_to login_path unless logged_in?
+      unless current_user
+        redirect_to login_path, :alert => 'Sign up or Log in to see the events!'
+      end
     end
   
     def events_attendance
