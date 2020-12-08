@@ -1,1 +1,14 @@
 @import "bootstrap";
+
+li {
+    list-style: none;
+}
+
+.main-container{
+    height: 100vh;
+}
+
+.login-container{
+    width: 400px;
+    margin:  auto;
+}

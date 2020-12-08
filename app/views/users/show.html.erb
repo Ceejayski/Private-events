@@ -1,10 +1,10 @@
 <div class="section">
   <div class="container">
-	  <div class="columns is-centered">
-      <div class="column is-9">
+	  <div>
         <h2 class="title is-2 is-spaced has-text-centered"><%= @user.name %>'s Profile</h2>
-	      <div class="columns is-centered">
-          <div class="column has-text-centered">
+      <div>
+	      <div class="row">
+          <div class="col-4">
             <h3 class="subtitle is-3 has-text-centered">Hosted Events: <%= @user.events.count %></h3>
             <ul>
               <% if @user.events.empty? %>
@@ -17,11 +17,11 @@
             </ul>
           </div>
 
-          <div class="column has-text-centered">
+          <div class="col-4">
             <h3 class="subtitle is-3">Upcoming Events: <%= @user.attended_events.where('date >= ?', Date.today).count %></h3>
             <ul>
               <% if @user.attended_events.where('date >= ?', Date.today).count.zero? %>
-                <p>No planned parties</p>
+                <p>No planned Events</p>
               <% else %>
                 <% @user.attended_events.where('date >= ?', Date.today).each do |event| %>
                   <li class="has-text-centered"><%=link_to event.name, event_path(event) %></li>
@@ -30,11 +30,11 @@
             </ul>
           </div>
 
-          <div class="column has-text-centered">
+          <div class="col-4">
             <h3 class="subtitle is-3 has-text-centered">Attended Events: <%= @user.attended_events.where('date < ?', Date.today).count %></h3>
             <ul>
               <% if @user.attended_events.empty? %>
-                <p>User is not partying</p>
+                <p>No Events Attended</p>
               <% else %>
                 <% @user.attended_events.where('date < ?', Date.today).each do |event| %>
                   <li class="has-text-centered"><%=link_to event.name, event_path(event) %></li>
