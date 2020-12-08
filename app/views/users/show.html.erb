@@ -11,7 +11,7 @@
                 <p>User is not hosting</p>
               <% else %>
                 <% @user.events.each do |event| %>
-                  <li class="has-text-centered"><%=link_to event.name, event_path(event) %></li>
+                  <li class="has-text-centered"><%=link_to event.description, event_path(event) %></li>
                 <% end %>
               <% end %>
             </ul>
