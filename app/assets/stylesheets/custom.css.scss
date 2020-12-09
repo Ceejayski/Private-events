@@ -14,9 +14,23 @@ li {
 }
 
 .card {
-  width: 18rem !important;
+  width: 18rem;
 }
 
 .font-1em {
   font-size: 0.9em !important;
+}
+
+.event-container {
+  width: 500px;
+  height: 350px;
+  margin: auto;
+}
+
+.event-show {
+  height: 90vh;
+}
+
+.w-500px{
+  width: 400px;
 }
