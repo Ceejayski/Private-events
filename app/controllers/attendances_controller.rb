@@ -20,7 +20,7 @@ class AttendancesController < ApplicationController
       flash[:notice] = 'Invitation sent!'
       redirect_to users_path(event_id: event.id)
     else
-      flash[:alert] = 'Ooops! Something went wrong...'
+      flash[:alert] = 'Ooops! Something went wrong...'  
       redirect_to event_path(event)
     end
   end
