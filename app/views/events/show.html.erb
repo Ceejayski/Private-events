@@ -1,32 +1,16 @@
-<!--<p>Creator : <%= @event.creator.name %></p>
-<div>
-  <p><%= @event.description %></p>
-</div>
-<div>
-  <p>Event Date: <%= @event.date %></p>
-</div>
-<p><%= events_attendance.count %></p>
-<% events_attendance.each do |attendee| %>
-  <ul>
-    <h5>attendees</h5>
-    <li><%= attendee.name %></li>
-  </ul>
-<% end %>-->
 
 <div class="section">
   <div class="container">
     <div class="columns is-centered">
       <div class="column is-5">
         <div class="box">
-          <!--<h2 class="title is-2 is-spaced has-text-centered mb-6"><%= @event.name %></h2>-->
-
+          
           <div class="columns is-mobile is-centered">
             <div class="column is-5">
               <p><small>Hosted by</small></p>
               <h4 class="subtitle is-4"><%= @event.creator.name %></h4>
             </div>
-            
-            <%# <div class="column"></div> %>
+  
             <div class="column">
               <div class="dropdown is-hoverable">
                 <div class="dropdown-trigger">
@@ -100,8 +84,6 @@
             <% attendance = Attendance.find_by(event_id: @event.id, user_id: current_user.id) %>
             <% if attendance && attendance.accepted? %>
               <%= button_to "Cancel attendance", attendance_path(id: attendance.id, event_id: @event.id, user_id: current_user.id), method: :delete, class: "button is-danger is-large is-fullwidth" %>
-            <% else %>
-              <%= button_to "Enroll", attendance_path(event_id: @event.id), method: :Post, class: "button is-primary is-large is-fullwidth" %>
             <% end %>
           <% end %>
 
