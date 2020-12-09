@@ -24,7 +24,7 @@
                 <p>No planned Events</p>
               <% else %>
                 <% @user.attended_events.where('date >= ?', Date.today).each do |event| %>
-                  <li class="has-text-centered"><%=link_to event.name, event_path(event) %>
+                  <li class="has-text-centered"><%=link_to event.description, event_path(event) %>
                   </li>
                 <% end %>
               <% end %>
@@ -38,7 +38,7 @@
                 <p>No Events Attended</p>
               <% else %>
                 <% @user.attended_events.where('date < ?', Date.today).each do |event| %>
-                  <li class="has-text-centered"><%=link_to event.name, event_path(event) %></li>
+                  <li class="has-text-centered"><%=link_to event.description, event_path(event) %></li>
                 <% end %>
               <% end %>
             </ul>
