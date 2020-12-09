@@ -1,15 +1,115 @@
-<%#= @event.title.capitalize %>
-<p>Creator : <%= @event.creator.name %></p>
+<!--<p>Creator : <%= @event.creator.name %></p>
 <div>
   <p><%= @event.description %></p>
 </div>
 <div>
   <p>Event Date: <%= @event.date %></p>
 </div>
-<p><%= @event.attendees.count %></p>
-<% @event.attendees.each do |attendee| %>
+<p><%= events_attendance.count %></p>
+<% events_attendance.each do |attendee| %>
   <ul>
     <h5>attendees</h5>
     <li><%= attendee.name %></li>
   </ul>
-<% end %>
+<% end %>-->
+
+<div class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-5">
+        <div class="box">
+          <!--<h2 class="title is-2 is-spaced has-text-centered mb-6"><%= @event.name %></h2>-->
+
+          <div class="columns is-mobile is-centered">
+            <div class="column is-5">
+              <p><small>Hosted by</small></p>
+              <h4 class="subtitle is-4"><%= @event.creator.name %></h4>
+            </div>
+            
+            <%# <div class="column"></div> %>
+            <div class="column">
+              <div class="dropdown is-hoverable">
+                <div class="dropdown-trigger">
+                  <button class="button is-fullwidth" aria-haspopup="true" aria-controls="dropdown-menu3">
+                    <span>Invitees: <%= User.find(@event.attendances.invited.map { |att| att.user_id }).count %></span>
+                  </button>
+                </div>
+                <div class="dropdown-menu" id="dropdown-menu6" role="menu">
+                  <div class="dropdown-content">
+                    <ul>
+                      <% if User.find(@event.attendances.invited.map { |att| att.user_id }).any? %>
+                        <div class="dropdown-item">
+                          <% User.find(@event.attendances.invited.map { |att| att.user_id }).each do |user| %>
+                            <li><p><%= user.name %></p></li>
+                          <% end %>
+                           </div>
+                      <% end %>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="column">
+              <div class="dropdown is-hoverable">
+                <div class="dropdown-trigger">
+                  <button class="button is-fullwidth" aria-haspopup="true" aria-controls="dropdown-menu3">
+                    <span>Attendees: <%= User.find(@event.attendances.accepted.map { |att| att.user_id }).count %></span>
+                  </button>
+                </div>
+                <div class="dropdown-menu" id="dropdown-menu6" role="menu">
+                  <div class="dropdown-content">
+                    <ul>
+                      <% if User.find(@event.attendances.accepted.map { |att| att.user_id }).any? %>
+                        <div class="dropdown-item">
+                          <% User.find(@event.attendances.accepted.map { |att| att.user_id }).each do |user| %>
+                            <li><p><%= user.name %></p></li>
+                          <% end %>
+                        </div>
+                      <% end %>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <p class="has-text-justified"><%= @event.description %></p><br/>
+           <div class="columns is-mobile is-centered">
+            <div class="column">
+              <div class="card">
+                <div class="card-header">
+                  <p class="card-header-title is-centered"><%= @event.creator.name %></p>
+                </div>
+              </div>
+            </div>
+            <div class="column">
+              <div class="card">
+                <div class="card-header">
+                  <p class="card-header-title is-centered"><%= @event.date %></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <br/>
+
+          <% if @event.creator == current_user %>
+            <%= button_to "Invite", user_path, params: {:event_id => @event.id}, method: :get, class: "button is-info is-large is-fullwidth" %>
+          <% else %>
+            <% attendance = Attendance.find_by(event_id: @event.id, user_id: current_user.id) %>
+            <% if attendance && attendance.accepted? %>
+              <%= button_to "Cancel attendance", attendance_path(id: attendance.id, event_id: @event.id, user_id: current_user.id), method: :delete, class: "button is-danger is-large is-fullwidth" %>
+            <% else %>
+              <%= button_to "Enroll", attendances_path(event_id: @event.id), method: :Post, class: "button is-primary is-large is-fullwidth" %>
+            <% end %>
+          <% end %>
+
+          <br/>
+
+          <%= link_to 'Back to Event List', root_path, class: "button is-fullwidth" %>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
