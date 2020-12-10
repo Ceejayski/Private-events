@@ -1,0 +1,16 @@
+<div class="d-flex justify-content-center">
+  <% @past_events.each do |event| %>
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title"><%= event.description %></h5>
+          <p class="card-text">Creator: <%= event.creator.name %></p>
+            <div>
+              <p class="font-1em">Event Date: <%= event.date %></p>
+            </div>
+            <div>
+              <%= link_to 'Hosted events', event_path(event), class: "btn btn-primary"%>
+            </div>
+        </div>
+      </div>
+  <% end %>
+</div>

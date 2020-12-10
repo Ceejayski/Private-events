@@ -1,0 +1,38 @@
+<div class="section">
+  <div class="container">
+	  <div>
+        <h2 class="title is-2 is-spaced has-text-centered"><%= @user.name %>'s Profile</h2>
+      <div>
+	      <div class="row">
+          <div class="col-4">
+            <h3 class="subtitle is-3 has-text-centered">Hosted Events: <%= @user.events.count %></h3>
+            <ul>
+               <% events_empty.each do |event| %>
+                  <li><%= event %><li>
+               <% end %>
+            </ul>
+          </div>
+
+          <div class="col-4">
+            <h3 class="subtitle is-3">Upcoming Events: <%= @user.attended_events.upcoming.count %></h3>
+            <ul>
+              <% planned_event.each do |event| %>
+                <li><%= event %></li>
+              <% end %>
+            </ul>
+          </div>
+
+          <div class="col-4">
+            <h3 class="subtitle is-3 has-text-centered">Attended Events: <%= @user.attended_events.past.count %></h3>
+            <ul>
+              <% old_event.each do |event| %>
+                <li><%= event %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,58 @@
+
+<div class="section">
+  <div class="container event-show d-flex align-items-center">
+        <div class="card event-container mx-auto">
+          <h5 class="card-header"><%= @event.description %></h5>
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <div>
+                <p><small>Hosted by</small></p>
+                <h4 ><%= @event.creator.name %></h4>
+              </div>
+    
+              <div class="d-flex justify-content-between">
+                <div class="dropdown">
+                  <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span>Invitees: <%= user_find_invited.count %></span>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <% event_invite.each do |user|%>
+                    <li><p class="dropdown-item"><%= user %></p></li>
+                    <% end %>
+                  </ul>
+                </div>
+                <div class="dropdown">
+                  <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span>Attendees: <%= user_find_accepted.count %></span>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <% event_accepted.each do |user|%>
+                    <li><p class="dropdown-item"><%= user %></p></li>
+                    <% end %>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          <div class="ml-auto">
+          <p class="card-header-title is-centered">Event Date: <%= @event.date %></p>
+          </div>
+          <br/>
+
+          <% if @event.creator == current_user %>
+            <%= button_to "Invite", users_path, params: {:event_id => @event.id}, method: :get, class: "btn btn-primary w-100" %>
+          <% else %>
+            <% attendance = Attendance.find_by(event_id: @event.id, user_id: current_user.id) %>
+            <% if attendance && attendance.accepted? %>
+              <%= button_to "Cancel attendance", attendance_path(id: attendance.id, event_id: @event.id, user_id: current_user.id), method: :delete, class: "btn btn-danger w-100" %>
+            <% else %>
+              <%= button_to "Enroll", attendance_path(event_id: @event.id), method: :patch, class: "btn btn-success w-100" %>
+            <% end %>
+          <% end %>
+
+          <br/>
+
+          <%= link_to 'Back to Event List', root_path, class: "btn btn-light border border-secondary w-100" %>
+          </div>
+          </div>
+  </div>
+</div>

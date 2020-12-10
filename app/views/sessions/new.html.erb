@@ -1,0 +1,18 @@
+<% provide(:title, "Log in") %>
+<div class="main-container d-flex align-items-center justify-content-center">
+<div class="login-container">
+    <h1>Log in</h1>
+    <div class="row">
+        <div>
+            <%= form_with(url: login_path, scope: :session, local: true) do |f| %>
+            <%= f.label :name %>
+            <%= f.text_field :name, class: 'form-control' %>
+
+            <%= f.submit "Log in", class: "btn btn-primary mt-2" %>
+            <% end %>
+            
+        </div>
+    </div>
+</div>
+</div>
+

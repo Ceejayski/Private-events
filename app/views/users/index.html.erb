@@ -1,0 +1,50 @@
+<div class="section">
+  <div class="container">
+    <div class="w-500px mx-auto">
+      <div class="column is-5">
+        <div class="box">
+          <h2 class="title is-2 is-spaced has-text-centered mb-6">Guest List</h2>
+    
+          <div class="columns is-centered">
+            <table class="table is-fullwidth is-hoverable">
+              <tbody>
+                <th class="has-text-centered">Name</th>
+                <th class="has-text-centered">Status</th>
+                <th class="has-text-centered">Action</th>
+                <% @user_reject.each do |user| %>
+                  <% attendance = attend(user) %>
+                  <tr>
+                    <td class="has-text-centered">
+                      <%= user.name %>
+                    </td>
+                    <% unless attendance.nil? || attendance.status.nil? %>
+                      <td class="has-text-centered">
+                        <span class="tag is-primary is-medium is-light"><%= attendance.status %><span>
+                      </td>
+                    <% else %>
+                      <td></td>
+                    <% end %>
+                    <% if attendance.nil? %>
+                      <td class="has-text-centered">
+                        <%= button_to "Invite", attendances_path(event_id: params[:event_id], user_id: user.id), class: "btn btn-success   btn-sm" %>
+                      </td>
+                    <% else %>
+                      <td class="has-text-centered">
+                        <%= button_to "Cancel Invitation", attendance_path(id: attendance.id, event_id: params[:event_id]), method: :delete, class: "btn btn-danger btn-sm" %>
+                      </td>
+                    <% end %>
+                  </tr>
+                <% end %>
+                </tbody>
+            </table>
+          </div>
+
+          <br/>
+
+          <%= link_to 'Back to Event Details', event_path(id: params[:event_id]), class: "button is-fullwidth" %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
