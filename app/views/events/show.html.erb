@@ -13,25 +13,21 @@
               <div class="d-flex justify-content-between">
                 <div class="dropdown">
                   <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                    <span>Invitees: <%= User.find(@event.attendances.invited.map { |att| att.user_id }).count %></span>
+                    <span>Invitees: <%= user_find_invited.count %></span>
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <% if User.find(@event.attendances.invited.map { |att| att.user_id }).any? %>
-                        <% User.find(@event.attendances.invited.map { |att| att.user_id }).each do |user| %>
-                          <li><p class="dropdown-item"><%= user.name %></p></li>
-                        <% end %>
+                    <% event_invite.each do |user|%>
+                    <li><p class="dropdown-item"><%= user %></p></li>
                     <% end %>
                   </ul>
                 </div>
                 <div class="dropdown">
                   <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                    <span>Attendees: <%= User.find(@event.attendances.accepted.map { |att| att.user_id }).count %></span>
+                    <span>Attendees: <%= user_find_accepted.count %></span>
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <% if User.find(@event.attendances.accepted.map { |att| att.user_id }).any? %>
-                        <% User.find(@event.attendances.accepted.map { |att| att.user_id }).each do |user| %>
-                          <li><p class="dropdown-item"><%= user.name %></p></li>
-                        <% end %>
+                    <% event_accepted.each do |user|%>
+                    <li><p class="dropdown-item"><%= user %></p></li>
                     <% end %>
                   </ul>
                 </div>

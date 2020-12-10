@@ -6,21 +6,9 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav ml-auto">
-      <% if logged_in? %>
-        <li class="nav-item">
-            <%= link_to "#{current_user.name}", user_path(current_user), class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-            <%= link_to 'Create Event', new_event_path(@event), class: "nav-link"%>
-        </li>
-        <li class="nav-item">
-            <%= link_to 'Logout', logout_path(@user), class: "nav-link", method: :delete %>
-        </li>
-      <% else %>
-        <li class="nav-item">
-            <%= link_to 'Sign up', new_user_path(@user), class: "nav-link" %>
-        </li>
-      <%end%>
+      <li class="nav-item"> <%= navlinks[0]%> </li> 
+      <li class="nav-item"> <%= navlinks[1]%> </li>
+      <li class="nav-item"> <%= navlinks[2]%> </li>  
     </ul>
   </div>
 </nav>

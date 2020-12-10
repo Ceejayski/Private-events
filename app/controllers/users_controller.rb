@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   def index
     @user = User.all
+    @user_reject = @user.reject { |user| user == Event.find(params[:event_id]).creator }
   end
 
   def new

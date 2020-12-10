@@ -23,6 +23,7 @@ As far as this is a training app with focus on ActiveRecord's associations, User
 
 <p float = 'left'>
     <img src="img/private_events.png" alt="Private events home page">
+    <img src="img/attendee.png" alt="List of attendees in event show page">
 </p>
 
 ### Getting started

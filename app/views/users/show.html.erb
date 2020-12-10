@@ -7,39 +7,26 @@
           <div class="col-4">
             <h3 class="subtitle is-3 has-text-centered">Hosted Events: <%= @user.events.count %></h3>
             <ul>
-              <% if @user.events.empty? %>
-                <p>User is not hosting</p>
-              <% else %>
-                <% @user.events.each do |event| %>
-                  <li class="has-text-centered"><%=link_to event.description, event_path(event) %></li>
-                <% end %>
+               <% events_empty.each do |event| %>
+                  <li><%= event %><li>
+               <% end %>
+            </ul>
+          </div>
+
+          <div class="col-4">
+            <h3 class="subtitle is-3">Upcoming Events: <%= @user.attended_events.upcoming.count %></h3>
+            <ul>
+              <% planned_event.each do |event| %>
+                <li><%= event %></li>
               <% end %>
             </ul>
           </div>
 
           <div class="col-4">
-            <h3 class="subtitle is-3">Upcoming Events: <%= @user.attended_events.where('date >= ?', Date.today).count %></h3>
+            <h3 class="subtitle is-3 has-text-centered">Attended Events: <%= @user.attended_events.past.count %></h3>
             <ul>
-              <% if @user.attended_events.where('date >= ?', Date.today).count.zero? %>
-                <p>No planned Events</p>
-              <% else %>
-                <% @user.attended_events.where('date >= ?', Date.today).each do |event| %>
-                  <li class="has-text-centered"><%=link_to event.description, event_path(event) %>
-                  </li>
-                <% end %>
-              <% end %>
-            </ul>
-          </div>
-
-          <div class="col-4">
-            <h3 class="subtitle is-3 has-text-centered">Attended Events: <%= @user.attended_events.where('date < ?', Date.today).count %></h3>
-            <ul>
-              <% if @user.attended_events.empty? %>
-                <p>No Events Attended</p>
-              <% else %>
-                <% @user.attended_events.where('date < ?', Date.today).each do |event| %>
-                  <li class="has-text-centered"><%=link_to event.description, event_path(event) %></li>
-                <% end %>
+              <% old_event.each do |event| %>
+                <li><%= event %></li>
               <% end %>
             </ul>
           </div>

@@ -11,8 +11,8 @@
                 <th class="has-text-centered">Name</th>
                 <th class="has-text-centered">Status</th>
                 <th class="has-text-centered">Action</th>
-                <% @user.reject { |user| user == Event.find(params[:event_id]).creator }.each do |user| %>
-                  <% attendance = Attendance.find_by(event_id: params[:event_id], user_id: user.id) %>
+                <% @user_reject.each do |user| %>
+                  <% attendance = attend(user) %>
                   <tr>
                     <td class="has-text-centered">
                       <%= user.name %>
